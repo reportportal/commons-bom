@@ -16,7 +16,7 @@
         <spring-session-core.version>2.0.2.RELEASE</spring-session-core.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-boot.version>2.1.0.RELEASE</spring-boot.version>
-        <guava.version>24.1-jre</guava.version>
+        <guava.version>27.0-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
         <hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
         <postgresql.version>42.2.5</postgresql.version>
