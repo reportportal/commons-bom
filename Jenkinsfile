@@ -14,7 +14,7 @@ node {
         sh "./mvnw -s ${SETTINGS} deploy"
     }
     stage('Push tag') {
-        sh "git commit -a -m \'Version update [${RELEASE_VERSION}]\'"
+        sh "git commit -a -m 'Version update [${RELEASE_VERSION}]'"
         sh "git tag ${RELEASE_VERSION}"
         sh 'git push --tags'
     }
