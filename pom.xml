@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.0.0-RC-1</version>
 
     <properties>
         <tika.version>1.22</tika.version>
@@ -20,6 +20,12 @@
         <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
         <postgresql.version>42.2.8</postgresql.version>
         <jooq.version>3.12.3</jooq.version>
+
+        <reportportal.version>5.0.0-RC-5</reportportal.version>
+
+        <bintray.subject>epam</bintray.subject>
+        <bintray.repo>reportportal</bintray.repo>
+        <bintray.package>commons-bom</bintray.package>
     </properties>
 
     <packaging>pom</packaging>
@@ -27,6 +33,32 @@
     <description>parent pom</description>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-dao</artifactId>
+                <version>${reportportal.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-rules</artifactId>
+                <version>${reportportal.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-model</artifactId>
+                <version>${reportportal.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons</artifactId>
+                <version>${reportportal.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>plugin-api</artifactId>
+                <version>${reportportal.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
@@ -115,4 +147,13 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-EPAM-reportportal</id>
+            <name>epam-reportportal</name>
+            <url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
 </project>
