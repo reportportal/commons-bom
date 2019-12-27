@@ -21,7 +21,11 @@
         <postgresql.version>42.2.8</postgresql.version>
         <jooq.version>3.12.3</jooq.version>
 
-        <reportportal.version>5.0.0-RC-5</reportportal.version>
+        <reportportal.dao.version>5.0.0-RC-5</reportportal.dao.version>
+        <reportportal.model.version>5.0.0-RC-6</reportportal.model.version>
+        <reportportal.rules.version>5.0.0-BETA-6</reportportal.rules.version>
+        <reportportal.commons.version>5.0.0-BETA-2</reportportal.commons.version>
+        <reportportal.plugin.version>5.0.0-RC-5</reportportal.plugin.version>
 
         <bintray.subject>epam</bintray.subject>
         <bintray.repo>reportportal</bintray.repo>
@@ -36,27 +40,27 @@
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>commons-dao</artifactId>
-                <version>${reportportal.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.epam.reportportal</groupId>
-                <artifactId>commons-rules</artifactId>
-                <version>${reportportal.version}</version>
+                <version>${reportportal.dao.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>commons-model</artifactId>
-                <version>${reportportal.version}</version>
+                <version>${reportportal.model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-rules</artifactId>
+                <version>${reportportal.rules.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>commons</artifactId>
-                <version>${reportportal.version}</version>
+                <version>${reportportal.commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>plugin-api</artifactId>
-                <version>${reportportal.version}</version>
+                <version>${reportportal.plugin.version}</version>
             </dependency>
 
             <dependency>
