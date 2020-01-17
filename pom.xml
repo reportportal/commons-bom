@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.0.0-RC-1</version>
+    <version>5.0.0-RC-6</version>
 
     <properties>
         <tika.version>1.22</tika.version>
