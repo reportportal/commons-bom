@@ -23,7 +23,7 @@
 
         <reportportal.dao.version>5.0.0-RC-6</reportportal.dao.version>
         <reportportal.model.version>5.0.0-RC-6</reportportal.model.version>
-        <reportportal.rules.version>5.0.0-BETA-6</reportportal.rules.version>
+        <reportportal.rules.version>5.0.0-RC-2</reportportal.rules.version>
         <reportportal.commons.version>5.0.0-BETA-2</reportportal.commons.version>
         <reportportal.plugin.version>5.0.0-RC-5</reportportal.plugin.version>
 
