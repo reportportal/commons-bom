@@ -25,6 +25,7 @@
         <reportportal.model.version>5.1.0-RC</reportportal.model.version>
         <reportportal.rules.version>5.1.0-RC</reportportal.rules.version>
         <reportportal.commons.version>5.1.0-RC</reportportal.commons.version>
+        <reportportal.fonts.version>5.1.0-RC</reportportal.fonts.version>
         <reportportal.plugin.version>5.1.0-RC</reportportal.plugin.version>
 
         <bintray.subject>epam</bintray.subject>
@@ -56,6 +57,11 @@
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>commons</artifactId>
                 <version>${reportportal.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-fonts</artifactId>
+                <version>${reportportal.fonts.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
