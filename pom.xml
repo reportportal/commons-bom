@@ -8,24 +8,25 @@
     <version>5.1.0-RC</version>
 
     <properties>
-        <tika.version>1.22</tika.version>
+        <tika.version>1.23</tika.version>
         <springfox-swagger2.version>${swagger.version}</springfox-swagger2.version>
 
         <hamcrest.version>1.3</hamcrest.version>
         <mockito.version>1.10.19</mockito.version>
-        <spring-session-core.version>2.2.0.RELEASE</spring-session-core.version>
-        <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
+        <spring-session-core.version>2.2.2.RELEASE</spring-session-core.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <guava.version>27.0-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
-        <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
-        <postgresql.version>42.2.8</postgresql.version>
-        <jooq.version>3.12.3</jooq.version>
+        <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
+        <postgresql.version>42.2.11</postgresql.version>
+        <jooq.version>3.12.4</jooq.version>
 
-        <reportportal.dao.version>${version}</reportportal.dao.version>
-        <reportportal.model.version>${version}</reportportal.model.version>
-        <reportportal.rules.version>${version}</reportportal.rules.version>
-        <reportportal.commons.version>${version}</reportportal.commons.version>
-        <reportportal.plugin.version>${version}</reportportal.plugin.version>
+        <reportportal.dao.version>5.1.0-RC</reportportal.dao.version>
+        <reportportal.model.version>5.1.0-RC</reportportal.model.version>
+        <reportportal.rules.version>5.1.0-RC</reportportal.rules.version>
+        <reportportal.commons.version>5.1.0-RC</reportportal.commons.version>
+        <reportportal.fonts.version>5.1.0-RC</reportportal.fonts.version>
+        <reportportal.plugin.version>5.1.0-RC</reportportal.plugin.version>
 
         <bintray.subject>epam</bintray.subject>
         <bintray.repo>reportportal</bintray.repo>
@@ -56,6 +57,11 @@
                 <groupId>com.epam.reportportal</groupId>
                 <artifactId>commons</artifactId>
                 <version>${reportportal.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.reportportal</groupId>
+                <artifactId>commons-fonts</artifactId>
+                <version>${reportportal.fonts.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.epam.reportportal</groupId>
