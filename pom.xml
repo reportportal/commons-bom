@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.1.0</version>
+    <version>5.2.0</version>
 
     <properties>
         <tika.version>1.23</tika.version>
@@ -21,8 +21,8 @@
         <postgresql.version>42.2.11</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
 
-        <reportportal.dao.version>5.1.0</reportportal.dao.version>
-        <reportportal.model.version>5.1.0</reportportal.model.version>
+        <reportportal.dao.version>5.2.0</reportportal.dao.version>
+        <reportportal.model.version>5.2.0</reportportal.model.version>
         <reportportal.rules.version>5.1.0</reportportal.rules.version>
         <reportportal.commons.version>5.1.0</reportportal.commons.version>
         <reportportal.fonts.version>5.1.0</reportportal.fonts.version>
