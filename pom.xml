@@ -22,12 +22,12 @@
         <postgresql.version>42.2.11</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
 
-        <reportportal.dao.version>5.3.0</reportportal.dao.version>
+        <reportportal.dao.version>5.3.1</reportportal.dao.version>
         <reportportal.model.version>5.3.0</reportportal.model.version>
         <reportportal.rules.version>5.3.0</reportportal.rules.version>
         <reportportal.commons.version>5.3.0</reportportal.commons.version>
         <reportportal.fonts.version>5.3.0</reportportal.fonts.version>
-        <reportportal.plugin.version>5.3.0</reportportal.plugin.version>
+        <reportportal.plugin.version>5.3.1</reportportal.plugin.version>
 
         <bintray.subject>epam</bintray.subject>
         <bintray.repo>reportportal</bintray.repo>
