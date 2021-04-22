@@ -29,9 +29,6 @@
         <reportportal.fonts.version>5.3.0</reportportal.fonts.version>
         <reportportal.plugin.version>5.3.3</reportportal.plugin.version>
 
-        <bintray.subject>epam</bintray.subject>
-        <bintray.repo>reportportal</bintray.repo>
-        <bintray.package>commons-bom</bintray.package>
     </properties>
 
     <packaging>pom</packaging>
@@ -161,9 +158,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-EPAM-reportportal</id>
-            <name>epam-reportportal</name>
-            <url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/reportportal/commons-bom</url>
         </repository>
     </distributionManagement>
 
