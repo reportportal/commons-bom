@@ -28,11 +28,19 @@ jobs:
       - name: Update version
         run: mvn versions:set -DnewVersion=${{env.RELEASE_VERSION}} -DgenerateBackupPoms=false
 
+      - name: Set up GPG
+        run: |
+          echo "$GPG_PRIVATE_KEY" > private.asc
+          gpg --import --batch private.asc
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
       - name: Release with Maven
-        id: release
-        run: mvn --batch-mode deploy
+        run: |
+          mvn -B -Pdeploy -Dgpg.passphrase=${GPG_PASSPHRASE} -DcreateChecksum=true clean deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Create Release
         id: createRelease
