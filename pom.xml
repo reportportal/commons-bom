@@ -6,6 +6,34 @@
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
     <version>5.3.5</version>
+    <packaging>pom</packaging>
+
+    <name>commons-bom</name>
+    <description>parent pom</description>
+    <url>https://github.com/reportportal/commons-bom</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/reportportal/commons-bom.git</connection>
+        <developerConnection>scm:git:git@github.com:reportportal/commons-bom.git</developerConnection>
+        <url>https://github.com/reportportal/commons-bom/tree/master</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>EPAM Systems</name>
+            <email>support@reportportal.io</email>
+            <organization>ReportPortal.io</organization>
+            <organizationUrl>http://www.reportportal.io</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <!-- https://nvd.nist.gov/vuln/detail/CVE-2020-1950 AND https://nvd.nist.gov/vuln/detail/CVE-2020-1951 -->
@@ -22,21 +50,60 @@
         <postgresql.version>42.2.11</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
 
-        <reportportal.dao.version>5.3.5</reportportal.dao.version>
-        <reportportal.model.version>5.3.3</reportportal.model.version>
-        <reportportal.rules.version>5.3.0</reportportal.rules.version>
-        <reportportal.commons.version>5.3.0</reportportal.commons.version>
-        <reportportal.fonts.version>5.3.0</reportportal.fonts.version>
-        <reportportal.plugin.version>5.3.3</reportportal.plugin.version>
+        <reportportal.dao.version>5.4.0</reportportal.dao.version>
+        <reportportal.model.version>5.4.0</reportportal.model.version>
+        <reportportal.rules.version>5.4.0</reportportal.rules.version>
+        <reportportal.commons.version>5.4.0</reportportal.commons.version>
+        <reportportal.fonts.version>5.4.0</reportportal.fonts.version>
+        <reportportal.plugin.version>5.4.0</reportportal.plugin.version>
 
-        <bintray.subject>epam</bintray.subject>
-        <bintray.repo>reportportal</bintray.repo>
-        <bintray.package>commons-bom</bintray.package>
     </properties>
 
-    <packaging>pom</packaging>
-    <name>commons-bom</name>
-    <description>parent pom</description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -161,9 +228,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-EPAM-reportportal</id>
-            <name>epam-reportportal</name>
-            <url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/reportportal/commons-bom</url>
         </repository>
     </distributionManagement>
 
