@@ -55,7 +55,7 @@
         <reportportal.rules.version>5.4.0</reportportal.rules.version>
         <reportportal.commons.version>5.4.0</reportportal.commons.version>
         <reportportal.fonts.version>5.4.0</reportportal.fonts.version>
-        <reportportal.plugin.version>5.4.0</reportportal.plugin.version>
+        <reportportal.plugin.version>5.5.0</reportportal.plugin.version>
 
     </properties>
 
