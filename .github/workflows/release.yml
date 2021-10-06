@@ -10,7 +10,7 @@ on:
 
 env:
   GH_USER_NAME: github.actor
-  RELEASE_VERSION: 5.5.0
+  RELEASE_VERSION: 5.5.1
 
 jobs:
   release:
