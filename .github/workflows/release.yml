@@ -1,16 +1,15 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '.github/**'
-      - README.md
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
 
 env:
   GH_USER_NAME: github.actor
-  RELEASE_VERSION: 5.5.1
+  RELEASE_VERSION: ${{ github.event.inputs.version }}
 
 jobs:
   release:
