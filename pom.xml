@@ -48,7 +48,7 @@
         <guava.version>27.0-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
         <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
-        <postgresql.version>42.2.11</postgresql.version>
+        <postgresql.version>42.3.3</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
 
         <reportportal.dao.version>5.6.1</reportportal.dao.version>
