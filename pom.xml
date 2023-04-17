@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.7.4</version>
+    <version>5.7.5</version>
     <packaging>pom</packaging>
 
     <name>commons-bom</name>
@@ -47,12 +47,12 @@
         <spring-boot.version>2.5.14</spring-boot.version>
         <guava.version>30.0-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
-        <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
-        <postgresql.version>42.4.1</postgresql.version>
+        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <postgresql.version>42.4.3</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
 
-        <reportportal.dao.version>5.7.4</reportportal.dao.version>
-        <reportportal.model.version>5.7.3</reportportal.model.version>
+        <reportportal.dao.version>5.8.0</reportportal.dao.version>
+        <reportportal.model.version>5.8.0</reportportal.model.version>
         <reportportal.rules.version>5.4.0</reportportal.rules.version>
         <reportportal.commons.version>5.4.0</reportportal.commons.version>
         <reportportal.fonts.version>5.4.0</reportportal.fonts.version>
@@ -210,7 +210,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>4.13.1</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
