@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.11.2</version>
+    <version>5.11.3</version>
     <packaging>pom</packaging>
 
     <name>commons-bom</name>
@@ -51,7 +51,7 @@
         <postgresql.version>42.4.3</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
       
-        <reportportal.dao.version>5.11.1</reportportal.dao.version>
+        <reportportal.dao.version>5.11.2</reportportal.dao.version>
         <reportportal.model.version>5.11.1</reportportal.model.version>
         <reportportal.rules.version>5.11.0</reportportal.rules.version>
         <reportportal.commons.version>5.11.0</reportportal.commons.version>
