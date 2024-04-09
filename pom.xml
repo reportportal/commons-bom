@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.11.6</version>
+    <version>5.11.7</version>
     <packaging>pom</packaging>
 
     <name>commons-bom</name>
@@ -48,10 +48,10 @@
         <guava.version>32.0.0-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
-        <postgresql.version>42.4.3</postgresql.version>
+        <postgresql.version>42.6.1</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
       
-        <reportportal.dao.version>5.11.5</reportportal.dao.version>
+        <reportportal.dao.version>5.11.6</reportportal.dao.version>
         <reportportal.model.version>5.11.1</reportportal.model.version>
         <reportportal.rules.version>5.11.0</reportportal.rules.version>
         <reportportal.commons.version>5.11.0</reportportal.commons.version>
