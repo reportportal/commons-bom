@@ -46,7 +46,7 @@
         <postgresql.version>42.7.5</postgresql.version>
         <jooq.version>3.19.18</jooq.version>
       
-        <reportportal.dao.version>5.14.2</reportportal.dao.version>
+        <reportportal.dao.version>5.14.3</reportportal.dao.version>
         <reportportal.commons.version>5.14.1</reportportal.commons.version>
         <reportportal.plugin.version>5.14.1</reportportal.plugin.version>
         <reportportal.model.version>5.11.1</reportportal.model.version>
