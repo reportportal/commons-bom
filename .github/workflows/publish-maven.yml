@@ -81,13 +81,9 @@ jobs:
             echo "⚠ Maven Central distribution management not found"
           fi
           
-      - name: Build, install and verify
+      - name: Build and publish to Maven Central
         run: |
-          mvn clean install -Pdeploy
-          
-      - name: Publish to Maven Central
-        run: |
-          mvn --batch-mode deploy -Pdeploy
+          mvn clean deploy -Pdeploy
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_USER }}
           MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
