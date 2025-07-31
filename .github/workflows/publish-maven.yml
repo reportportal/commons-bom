@@ -25,11 +25,6 @@ on:
         description: 'Release version to publish'
         required: true
         type: string
-      dry_run:
-        description: 'Perform a dry run (do not actually publish)'
-        required: false
-        type: boolean
-        default: false
 
 env:
   SONATYPE_URL: 'https://central.sonatype.com'
@@ -66,12 +61,10 @@ jobs:
           # Set version based on trigger type
           if [ "${{ github.event_name }}" = "push" ]; then
             VERSION="5.14.4"
-            DRY_RUN="false"
-            echo "Push trigger detected - using version: $VERSION, dry_run: $DRY_RUN"
+            echo "Push trigger detected - using version: $VERSION"
           else
             VERSION="${{ github.event.inputs.version }}"
-            DRY_RUN="${{ github.event.inputs.dry_run }}"
-            echo "Manual trigger detected - using version: $VERSION, dry_run: $DRY_RUN"
+            echo "Manual trigger detected - using version: $VERSION"
           fi
           
           # Update pom.xml version
@@ -93,23 +86,13 @@ jobs:
           mvn clean verify -Pdeploy
           
       - name: Publish to Maven Central
-        if: ${{ github.event_name != 'push' && !github.event.inputs.dry_run }}
         run: |
           mvn --batch-mode deploy -Pdeploy
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_USER }}
           MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           
-      - name: Dry run - Show what would be published
-        if: ${{ github.event_name == 'push' || github.event.inputs.dry_run }}
-        run: |
-          echo "DRY RUN: Would publish version $VERSION"
-          echo "DRY RUN: Artifacts that would be deployed:"
-          mvn dependency:tree
-          echo "DRY RUN: No actual deployment performed"
-          
       - name: Verify deployment
-        if: ${{ github.event_name != 'push' && !github.event.inputs.dry_run }}
         run: |
           echo "Waiting for artifacts to be available in Maven Central..."
           sleep 30
