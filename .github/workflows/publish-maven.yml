@@ -81,9 +81,9 @@ jobs:
             echo "⚠ Maven Central distribution management not found"
           fi
           
-      - name: Build and verify
+      - name: Build, install and verify
         run: |
-          mvn clean verify -Pdeploy
+          mvn clean install -Pdeploy
           
       - name: Publish to Maven Central
         run: |
