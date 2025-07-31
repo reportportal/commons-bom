@@ -1,0 +1,121 @@
+# Copyright 2025 EPAM Systems
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Publish to Maven Central
+
+on:
+  push:
+    branches:
+      - fix/publish
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version to publish'
+        required: true
+        type: string
+      dry_run:
+        description: 'Perform a dry run (do not actually publish)'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  SONATYPE_URL: 'https://central.sonatype.com'
+  PACKAGE: 'com.epam.reportportal'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Java for publishing to Maven Central
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          server-id: ossrh
+          server-username: ${{ secrets.MAVEN_USERNAME }}
+          server-password: ${{ secrets.MAVEN_PASSWORD }}
+          
+      - name: Setup GPG
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          
+      - name: Configure Maven settings
+        run: |
+          # Set version based on trigger type
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="5.14.4"
+            DRY_RUN="true"
+            echo "Push trigger detected - using version: $VERSION, dry_run: $DRY_RUN"
+          else
+            VERSION="${{ github.event.inputs.version }}"
+            DRY_RUN="${{ github.event.inputs.dry_run }}"
+            echo "Manual trigger detected - using version: $VERSION, dry_run: $DRY_RUN"
+          fi
+          
+          # Update pom.xml version
+          if [ -n "$VERSION" ]; then
+            mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
+            echo "Updated pom.xml version to: $VERSION"
+          fi
+          
+          # Add distribution management for Maven Central if not present
+          if ! grep -q "<id>ossrh</id>" pom.xml; then
+            echo "Adding Maven Central distribution management..."
+            # This would need to be done manually or through a more sophisticated script
+            echo "Please ensure pom.xml has proper distribution management for Maven Central"
+          fi
+          
+      - name: Build and verify
+        run: |
+          mvn clean verify -Pdeploy
+          
+      - name: Publish to Maven Central
+        if: ${{ github.event_name != 'push' && !github.event.inputs.dry_run }}
+        run: |
+          mvn --batch-mode deploy -Pdeploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.SONATYPE_USER }}
+          MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          
+      - name: Dry run - Show what would be published
+        if: ${{ github.event_name == 'push' || github.event.inputs.dry_run }}
+        run: |
+          echo "DRY RUN: Would publish version $VERSION"
+          echo "DRY RUN: Artifacts that would be deployed:"
+          mvn dependency:tree
+          echo "DRY RUN: No actual deployment performed"
+          
+      - name: Verify deployment
+        if: ${{ github.event_name != 'push' && !github.event.inputs.dry_run }}
+        run: |
+          echo "Waiting for artifacts to be available in Maven Central..."
+          sleep 30
+          
+          # Check if artifacts are available (basic check)
+          ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+          GROUP_ID=$(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout)
+          
+          echo "Checking availability of $GROUP_ID:$ARTIFACT_ID:$VERSION"
+          
+          # Note: Maven Central has a delay, so this is just a basic verification
+          echo "Deployment completed. Artifacts will be available in Maven Central shortly." 

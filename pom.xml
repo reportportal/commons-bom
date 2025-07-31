@@ -235,6 +235,16 @@
 
     <distributionManagement>
         <repository>
+            <id>ossrh</id>
+            <name>Maven Central</name>
+            <url>https://central.sonatype.com/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>Maven Central Snapshots</name>
+            <url>https://central.sonatype.com/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
             <id>github</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/reportportal/commons-bom</url>
