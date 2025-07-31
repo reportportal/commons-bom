@@ -14,6 +14,8 @@
 name: Publish to Maven Central
 
 on:
+  release:
+    types: [created]
   push:
     branches:
       - fix/publish
@@ -64,7 +66,7 @@ jobs:
           # Set version based on trigger type
           if [ "${{ github.event_name }}" = "push" ]; then
             VERSION="5.14.4"
-            DRY_RUN="true"
+            DRY_RUN="false"
             echo "Push trigger detected - using version: $VERSION, dry_run: $DRY_RUN"
           else
             VERSION="${{ github.event.inputs.version }}"
