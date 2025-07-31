@@ -104,6 +104,16 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>github</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Packages</name>
+                    <url>https://maven.pkg.github.com/reportportal/commons-bom</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -244,11 +254,6 @@
             <name>Maven Central Snapshots</name>
             <url>https://central.sonatype.com/content/repositories/snapshots/</url>
         </snapshotRepository>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/reportportal/commons-bom</url>
-        </repository>
     </distributionManagement>
 
 </project>

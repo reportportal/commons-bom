@@ -78,11 +78,12 @@ jobs:
             echo "Updated pom.xml version to: $VERSION"
           fi
           
-          # Add distribution management for Maven Central if not present
-          if ! grep -q "<id>ossrh</id>" pom.xml; then
-            echo "Adding Maven Central distribution management..."
-            # This would need to be done manually or through a more sophisticated script
-            echo "Please ensure pom.xml has proper distribution management for Maven Central"
+          # Verify distribution management configuration
+          echo "Verifying distribution management configuration..."
+          if grep -q "<id>ossrh</id>" pom.xml; then
+            echo "✓ Maven Central distribution management found"
+          else
+            echo "⚠ Maven Central distribution management not found"
           fi
           
       - name: Build and verify
