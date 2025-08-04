@@ -113,7 +113,8 @@ jobs:
           
           # Create the bundle ZIP file (Sonatype Central accepts ZIP files)
           BUNDLE_FILE="bundle.zip"
-          zip -r ${BUNDLE_FILE} "${FILES[@]}"
+          # Use -j flag to junk (ignore) directory paths
+          zip -j ${BUNDLE_FILE} "${FILES[@]}"
           
           echo "Bundle created: ${BUNDLE_FILE} ($(wc -c < ${BUNDLE_FILE}) bytes)"
           echo "Bundle contents:"
