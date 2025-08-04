@@ -128,7 +128,7 @@ jobs:
             -X POST \
             -H "Authorization: Bearer $AUTH_TOKEN" \
             -H "Content-Type: multipart/form-data" \
-            -F "bundle=@bundle.jar;filename=bundle.jar" \
+            -F "bundle=@${BUNDLE_FILE};filename=${BUNDLE_FILE}" \
             -F "name=commons-bom-$VERSION" \
             -F "publishingType=AUTOMATIC" \
             "$SONATYPE_CENTRAL_API/upload")
