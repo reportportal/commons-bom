@@ -113,8 +113,18 @@ jobs:
           
           # Create the bundle ZIP file (Sonatype Central accepts ZIP files)
           BUNDLE_FILE="bundle.zip"
-          # Use -j flag to junk (ignore) directory paths
-          zip -j ${BUNDLE_FILE} "${FILES[@]}"
+          
+          # Create a temporary directory and copy files there to ensure clean paths
+          mkdir -p temp_bundle
+          cp "${FILES[@]}" temp_bundle/
+          cd temp_bundle
+          
+          # Create ZIP from within the temp directory to avoid path prefixes
+          zip -r ../${BUNDLE_FILE} .
+          cd ..
+          
+          # Clean up temp directory
+          rm -rf temp_bundle
           
           echo "Bundle created: ${BUNDLE_FILE} ($(wc -c < ${BUNDLE_FILE}) bytes)"
           echo "Bundle contents:"
