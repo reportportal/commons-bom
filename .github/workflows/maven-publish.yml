@@ -123,6 +123,19 @@ jobs:
         run: |
           echo "Uploading bundle to Sonatype Central..."
           
+          # Debug: Check if bundle file exists
+          echo "Current directory: $(pwd)"
+          echo "Files in current directory:"
+          ls -la
+          echo "BUNDLE_FILE: ${BUNDLE_FILE}"
+          
+          if [ ! -f "${BUNDLE_FILE}" ]; then
+            echo "ERROR: Bundle file ${BUNDLE_FILE} not found!" >&2
+            exit 1
+          fi
+          
+          echo "Bundle file size: $(wc -c < ${BUNDLE_FILE}) bytes"
+          
           # Upload the bundle using the new Central API (following official docs)
           RESPONSE=$(curl -s -w "\n%{http_code}" \
             -X POST \
