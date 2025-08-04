@@ -53,7 +53,6 @@ jobs:
       - name: Create authentication token
         run: |
           # Create base64 encoded token for Sonatype Central API
-          # According to official docs: base64(username:password)
           echo "AUTH_TOKEN=$(printf "%s:%s" "${{ secrets.SONATYPE_USER }}" "${{ secrets.SONATYPE_PASSWORD }}" | base64)" >> $GITHUB_ENV
 
       - name: Download artifacts from GitHub Packages
