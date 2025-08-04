@@ -92,17 +92,32 @@ jobs:
         run: |
           echo "Creating deployment bundle..."
           
-          # List all downloaded files
-          files=($(ls *.pom*))
+          # Define specific files to bundle (exactly what we downloaded)
+          FILES=(
+            "${ARTIFACT_NAME}.pom"
+            "${ARTIFACT_NAME}.pom.asc"
+            "${ARTIFACT_NAME}.pom.md5"
+            "${ARTIFACT_NAME}.pom.sha1"
+          )
+          
           echo 'Files to bundle:'
-          echo "${files[@]}"
+          echo "${FILES[@]}"
           
-          # Create the bundle JAR file directly with files (no META-INF)
-          export BUNDLE_FILE="bundle.jar"
-          jar -cvf ${BUNDLE_FILE} "${files[@]}"
+          # Verify all files exist
+          for file in "${FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "ERROR: Required file $file not found!" >&2
+              exit 1
+            fi
+          done
           
-          echo "Bundle created: bundle.jar ($(wc -c < bundle.jar) bytes)"
-          jar -tf bundle.jar
+          # Create the bundle ZIP file (Sonatype Central accepts ZIP files)
+          export BUNDLE_FILE="bundle.zip"
+          zip -r ${BUNDLE_FILE} "${FILES[@]}"
+          
+          echo "Bundle created: bundle.zip ($(wc -c < bundle.zip) bytes)"
+          echo "Bundle contents:"
+          unzip -l bundle.zip
 
       - name: Upload bundle to Sonatype Central
         run: |
