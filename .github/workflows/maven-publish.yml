@@ -14,18 +14,21 @@
 name: Maven Publish to Central
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version (e.g., 5.14.4)'
-        required: true
-        type: string
+  # workflow_dispatch:
+  #   inputs:
+  #     version:
+  #       description: 'Release version (e.g., 5.14.4)'
+  #       required: true
+  #       type: string
+  push:
+    branches: [ fix/maven-publish ]
 
 env:
   REPOSITORY_URL: 'https://maven.pkg.github.com'
   PACKAGE: 'com.epam.reportportal'
   ARTIFACT: 'commons-bom'
   SONATYPE_CENTRAL_API: 'https://central.sonatype.com/api/v1/publisher'
+  VERSION: '5.14.4'  # Test version for automatic runs
 
 jobs:
   publish:
@@ -44,7 +47,7 @@ jobs:
       - name: Get variables
         run: |
           echo "PACKAGE_PATH=`echo ${{ env.PACKAGE }} | sed 's/\./\//g'`" >> $GITHUB_ENV
-          echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          echo "VERSION=${{ env.VERSION }}" >> $GITHUB_ENV
           echo "ARTIFACT_NAME=${ARTIFACT}-${VERSION}" >> $GITHUB_ENV
 
       - name: Create authentication token
