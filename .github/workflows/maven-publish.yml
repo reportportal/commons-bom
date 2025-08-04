@@ -112,12 +112,15 @@ jobs:
           done
           
           # Create the bundle ZIP file (Sonatype Central accepts ZIP files)
-          export BUNDLE_FILE="bundle.zip"
+          BUNDLE_FILE="bundle.zip"
           zip -r ${BUNDLE_FILE} "${FILES[@]}"
           
-          echo "Bundle created: bundle.zip ($(wc -c < bundle.zip) bytes)"
+          echo "Bundle created: ${BUNDLE_FILE} ($(wc -c < ${BUNDLE_FILE}) bytes)"
           echo "Bundle contents:"
-          unzip -l bundle.zip
+          unzip -l ${BUNDLE_FILE}
+          
+          # Export the variable for the next step
+          echo "BUNDLE_FILE=${BUNDLE_FILE}" >> $GITHUB_ENV
 
       - name: Upload bundle to Sonatype Central
         run: |
