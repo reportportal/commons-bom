@@ -83,7 +83,15 @@ jobs:
           
       - name: Build and publish to Maven Central
         run: |
-          mvn clean deploy -Pdeploy
+          echo "Current directory: $(pwd)"
+          echo "Listing files:"
+          ls -la
+          echo "Building and deploying..."
+          mvn clean package -Pdeploy
+          echo "Checking target directory:"
+          ls -la target/
+          echo "Deploying to Maven Central..."
+          mvn deploy:deploy-file -Dfile=pom.xml -DpomFile=pom.xml -Durl=https://central.sonatype.com/service/local/staging/deploy/maven2/ -DrepositoryId=ossrh
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_USER }}
           MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
