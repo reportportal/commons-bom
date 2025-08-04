@@ -52,8 +52,9 @@ jobs:
 
       - name: Create authentication token
         run: |
-          # Create base64 encoded token for Sonatype Central API
-          echo "AUTH_TOKEN=$(printf "%s:%s" "${{ secrets.SONATYPE_USER }}" "${{ secrets.SONATYPE_PASSWORD }}" | base64)" >> $GITHUB_ENV
+          # For Sonatype Central API, use the password/token directly as Bearer token
+          # The password should be the API token, not base64 encoded
+          echo "AUTH_TOKEN=${{ secrets.SONATYPE_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Download artifacts from GitHub Packages
         run: |
@@ -124,14 +125,19 @@ jobs:
           echo "Upload response status: $HTTP_STATUS"
           echo "Upload response body: $RESPONSE_BODY"
           
-          if [ "$HTTP_STATUS" -ne 200 ]; then
+          if [ "$HTTP_STATUS" -ne 200 ] && [ "$HTTP_STATUS" -ne 201 ]; then
             echo "ERROR: Failed to upload bundle. HTTP status: $HTTP_STATUS" >&2
             echo "Response: $RESPONSE_BODY" >&2
             exit 1
           fi
           
           # Extract deployment ID from response
-          DEPLOYMENT_ID=$(echo "$RESPONSE_BODY" | jq -r '.deploymentId // empty')
+          # For 201 responses, the response body is the deployment ID directly
+          if [ "$HTTP_STATUS" -eq 201 ]; then
+            DEPLOYMENT_ID="$RESPONSE_BODY"
+          else
+            DEPLOYMENT_ID=$(echo "$RESPONSE_BODY" | jq -r '.deploymentId // empty')
+          fi
           
           if [ -z "$DEPLOYMENT_ID" ]; then
             echo "ERROR: Could not extract deployment ID from response" >&2
