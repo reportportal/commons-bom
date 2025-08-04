@@ -52,9 +52,9 @@ jobs:
 
       - name: Create authentication token
         run: |
-          # For Sonatype Central API, use the password/token directly as Bearer token
-          # The password should be the API token, not base64 encoded
-          echo "AUTH_TOKEN=${{ secrets.SONATYPE_PASSWORD }}" >> $GITHUB_ENV
+          # Create base64 encoded token for Sonatype Central API
+          # According to the API docs: base64(username:password)
+          echo "AUTH_TOKEN=$(printf "%s:%s" "${{ secrets.SONATYPE_USER }}" "${{ secrets.SONATYPE_PASSWORD }}" | base64)" >> $GITHUB_ENV
 
       - name: Download artifacts from GitHub Packages
         run: |
