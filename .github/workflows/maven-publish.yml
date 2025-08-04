@@ -92,14 +92,14 @@ jobs:
         run: |
           echo "Creating deployment bundle..."
           
-          # Create a temporary directory for the bundle
-          mkdir -p bundle
+          # List all downloaded files
+          files=($(ls *.pom*))
+          echo 'Files to bundle:'
+          echo "${files[@]}"
           
-          # Copy all downloaded files to bundle directory
-          cp *.pom* bundle/
-          
-          # Create the bundle JAR file
-          jar -cvf bundle.jar -C bundle .
+          # Create the bundle JAR file directly with files (no META-INF)
+          export BUNDLE_FILE="bundle.jar"
+          jar -cvf ${BUNDLE_FILE} "${files[@]}"
           
           echo "Bundle created: bundle.jar ($(wc -c < bundle.jar) bytes)"
           jar -tf bundle.jar
