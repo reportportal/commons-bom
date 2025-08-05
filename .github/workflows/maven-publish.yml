@@ -114,12 +114,12 @@ jobs:
           # Create the bundle ZIP file (Sonatype Central accepts ZIP files)
           BUNDLE_FILE="bundle.zip"
           
-          # Create a temporary directory and copy files there to ensure clean paths
-          mkdir -p temp_bundle
-          cp "${FILES[@]}" temp_bundle/
+          # Create Maven repository structure in temporary directory
+          mkdir -p temp_bundle/${PACKAGE_PATH}/${ARTIFACT}/${VERSION}
+          cp "${FILES[@]}" temp_bundle/${PACKAGE_PATH}/${ARTIFACT}/${VERSION}/
           cd temp_bundle
           
-          # Create ZIP from within the temp directory to avoid path prefixes
+          # Create ZIP with proper Maven repository structure
           zip -r ../${BUNDLE_FILE} .
           cd ..
           
