@@ -46,7 +46,7 @@
         <spring-session-core.version>2.2.2.RELEASE</spring-session-core.version>
         <spring-boot.version>2.5.14</spring-boot.version>
         <guava.version>32.0.0-jre</guava.version>
-        <swagger.version>2.9.2</swagger.version>
+        <swagger.version>2.10.0</swagger.version>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
         <postgresql.version>42.6.1</postgresql.version>
         <jooq.version>3.12.4</jooq.version>
