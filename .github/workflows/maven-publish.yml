@@ -27,7 +27,7 @@ jobs:
     with:
       version: ${{ github.event.inputs.version }}
       artifact: commons-bom
-      package_suffixes: '.pom,.pom.asc,.pom.md5,.pom.sha1,.pom.sha256,.pom.sha512,.pom.asc.md5,.pom.asc.sha1,.pom.asc.sha256,.pom.asc.sha512'
+      package_suffixes: '.pom,.pom.asc,.pom.md5,.pom.sha1,.pom.asc.md5,.pom.asc.sha1'
     secrets:
       SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
       SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }} 
