@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.reportportal</groupId>
     <artifactId>commons-bom</artifactId>
-    <version>5.15.2</version>
+    <version>5.15.3</version>
     <packaging>pom</packaging>
 
     <name>commons-bom</name>
@@ -40,10 +40,12 @@
         <tika.version>1.28.4</tika.version>
 
         <hamcrest.version>2.2</hamcrest.version>
-        <spring-boot.version>3.4.4</spring-boot.version>
+        <spring-boot.version>3.5.15</spring-boot.version>
+        <jackson-bom.version>2.21.6</jackson-bom.version>
+        <logback.version>1.5.37</logback.version>
         <guava.version>32.0.0-jre</guava.version>
         <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
-        <postgresql.version>42.7.5</postgresql.version>
+        <postgresql.version>42.7.13</postgresql.version>
         <jooq.version>3.19.18</jooq.version>
       
         <reportportal.dao.version>5.15.4</reportportal.dao.version>
@@ -139,12 +141,30 @@
                 <version>${reportportal.events.version}</version>
             </dependency>
                  
+            <!-- Before Boot: Maven first-wins, otherwise Boot keeps Jackson 2.21.4. -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tika</groupId>
