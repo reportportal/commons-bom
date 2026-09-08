@@ -41,6 +41,8 @@
 
         <hamcrest.version>2.2</hamcrest.version>
         <spring-boot.version>3.5.15</spring-boot.version>
+        <spring-framework.version>6.2.19</spring-framework.version>
+        <spring-security.version>6.5.11</spring-security.version>
         <jackson-bom.version>2.21.6</jackson-bom.version>
         <logback.version>1.5.37</logback.version>
         <guava.version>32.0.0-jre</guava.version>
@@ -48,8 +50,8 @@
         <postgresql.version>42.7.13</postgresql.version>
         <jooq.version>3.19.18</jooq.version>
       
-        <reportportal.dao.version>5.15.4</reportportal.dao.version>
-        <reportportal.commons.version>5.15.2</reportportal.commons.version>
+        <reportportal.dao.version>5.15.7</reportportal.dao.version>
+        <reportportal.commons.version>5.15.3</reportportal.commons.version>
         <reportportal.plugin.version>5.15.0</reportportal.plugin.version>
         <reportportal.model.version>5.11.1</reportportal.model.version>
         <reportportal.rules.version>5.11.0</reportportal.rules.version>
@@ -141,11 +143,25 @@
                 <version>${reportportal.events.version}</version>
             </dependency>
                  
-            <!-- Before Boot: Maven first-wins, otherwise Boot keeps Jackson 2.21.4. -->
+            <!-- Before Boot: Maven first-wins, otherwise Boot keeps its own Jackson/Framework/Security versions. -->
             <dependency>
                 <groupId>com.fasterxml.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
                 <version>${jackson-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring-security.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
